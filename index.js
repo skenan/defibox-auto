@@ -28,7 +28,8 @@ const claimTokenAction = {
     owner: EOS_ACCOUNT_NAME,
   },
 };
-// 91160 = expected usdt / 10000
+// 约等于
+// 1365000 = 0.65 *21.07 * 10000 * 0.997
 const swapTokenAction = {
   account: 'token.defi',
   name: 'transfer',
@@ -41,15 +42,15 @@ const swapTokenAction = {
   data: {
     from: EOS_ACCOUNT_NAME,
     to: 'swap.defi',
-    memo: 'swap,91160,194-12',
-    quantity: '0.439301 BOX',
+    memo: 'swap,136000,194-12',
+    quantity: '0.650000 BOX',
   },
 };
 async function main() {
   try {
     const res = await api.transact(
       {
-        actions: [swapTokenAction],
+        actions: [claimTokenAction, swapTokenAction],
       },
       {
         blocksBehind: 3,
